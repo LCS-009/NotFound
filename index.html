@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOT FOUND | COMPACT ARCHIVE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@500;700;900&family=Sedgwick+Ave+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fontes (Incluindo Fraktur Bold / UnifrakturMaguntia) -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;600;900&family=Oswald:wght@500;700;900&family=Sedgwick+Ave+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -36,6 +37,13 @@
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+
+        /* Estilo Fraktur Bold para Categorias */
+        .fraktur-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.8rem !important;
+            letter-spacing: 2px;
+        }
 
         /* ================= TELA DE SENHA ================= */
         #gatekeeper {
@@ -118,26 +126,15 @@
         }
         nav a:hover { color: var(--grey-light); }
 
-        .social-btn {
-            background: var(--white);
-            color: var(--black);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 0.8rem;
-        }
-        .social-btn:hover { background: var(--grey-light); color: var(--white); }
-
         /* ================= SISTEMA DE PÁGINAS MULTI-TELA ================= */
         .page {
-            display: none; /* Esconde todas as páginas por padrão */
+            display: none; 
             padding-top: 80px;
             min-height: 100vh;
         }
 
         .page.active {
-            display: block; /* Mostra apenas a página ativa */
+            display: block; 
         }
 
         /* ================= HOME (PÁGINA INICIAL) ================= */
@@ -160,22 +157,22 @@
 
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            max-width: 600px;
+            max-width: 750px;
             width: 100%;
             margin-top: 25px;
         }
 
         .cat-card-link {
             border: 2px solid var(--white);
-            padding: 20px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 900;
+            padding: 18px 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
             text-transform: uppercase;
             background: var(--black);
             transition: 0.2s;
+            text-align: center;
         }
 
         .cat-card-link:hover {
@@ -184,7 +181,7 @@
             transform: translateY(-3px);
         }
 
-        /* ================= PÁGINAS DE PRODUTOS (COMPACTAS) ================= */
+        /* ================= PÁGINAS DE PRODUTOS ================= */
         .section-header-compact {
             display: flex;
             justify-content: space-between;
@@ -194,8 +191,7 @@
         }
 
         .section-header-compact h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
 
         .btn-voltar {
@@ -212,11 +208,11 @@
         .catalog-container {
             padding: 30px 4vw;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 20px;
         }
 
-        /* CARD COMPACTO COM EFEITO MINECRAFT */
+        /* CARD COM EFEITO MINECRAFT */
         .produto-card {
             background-color: var(--black);
             position: relative;
@@ -260,7 +256,7 @@
 
         .produto-img-container {
             width: 100%;
-            height: 220px; /* Reduzido para ficar compacto */
+            height: 200px;
             overflow: hidden;
             background: var(--grey-dark);
         }
@@ -279,18 +275,40 @@
 
         .produto-info h3 {
             font-size: 0.9rem;
-            color: var(--grey-light);
+            color: var(--white);
             text-transform: uppercase;
+            font-weight: 700;
         }
         
         .produto-info .preco {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-top: 2px;
+            font-size: 1.2rem;
+            color: var(--grey-light);
+            margin: 2px 0;
         }
 
-        /* ================= FOOTER COMPACTO ================= */
+        /* Detalhes Técnicos da Peça */
+        .produto-detalhes {
+            font-size: 0.65rem;
+            color: var(--grey-light);
+            border-top: 1px dashed var(--grey-mid);
+            margin-top: 6px;
+            padding-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .edicao-limitada {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        .edicao-ilimitada {
+            color: #4dabf7;
+        }
+
+        /* ================= RODAPÉ ================= */
         footer {
             text-align: center;
             padding: 30px 10px;
@@ -353,10 +371,11 @@
             </p>
             
             <div class="category-grid">
-                <a href="#" onclick="mudarPagina('camisas')" class="cat-card-link">Camisas</a>
-                <a href="#" onclick="mudarPagina('moletons')" class="cat-card-link">Moletons</a>
-                <a href="#" onclick="mudarPagina('calcas')" class="cat-card-link">Calças</a>
-                <a href="#" onclick="mudarPagina('balaclavas')" class="cat-card-link">Balaclavas</a>
+                <a href="#" onclick="mudarPagina('camisas')" class="cat-card-link fraktur-title">Camisas</a>
+                <a href="#" onclick="mudarPagina('moletons')" class="cat-card-link fraktur-title">Moletons</a>
+                <a href="#" onclick="mudarPagina('calcas')" class="cat-card-link fraktur-title">Calças</a>
+                <a href="#" onclick="mudarPagina('balaclavas')" class="cat-card-link fraktur-title">Balaclavas</a>
+                <a href="#" onclick="mudarPagina('kits')" class="cat-card-link fraktur-title" style="grid-column: span 2;">Kits</a>
             </div>
         </div>
     </div>
@@ -365,29 +384,105 @@
     <!-- ================= PÁGINA 2: CAMISAS ================= -->
     <div id="page-camisas" class="page">
         <div class="section-header-compact">
-            <h2> > CAMISAS</h2>
+            <h2 class="fraktur-title">> Camisas</h2>
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>T-Shirt "Void"</h3><div class="preco">R$ 89,90</div></div>
+                <div class="produto-info">
+                    <h3>T-Shirt "Void"</h3>
+                    <div class="preco">R$ 89,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Pima 240g</span>
+                        <span>Cor: Preto Estonado</span>
+                        <span class="edicao-limitada">Edição Limitada (50 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Oversized "Error"</h3><div class="preco">R$ 95,00</div></div>
+                <div class="produto-info">
+                    <h3>Oversized "Error"</h3>
+                    <div class="preco">R$ 95,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Heavyweight</span>
+                        <span>Cor: Branco Off-White</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Longsleeve "Glitch"</h3><div class="preco">R$ 110,00</div></div>
+                <div class="produto-info">
+                    <h3>Longsleeve "Glitch"</h3>
+                    <div class="preco">R$ 110,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Meia Malha Cardada</span>
+                        <span>Cor: Preto Fosco</span>
+                        <span class="edicao-limitada">Edição Limitada (30 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>T-Shirt "No Signal"</h3><div class="preco">R$ 85,00</div></div>
+                <div class="produto-info">
+                    <h3>T-Shirt "No Signal"</h3>
+                    <div class="preco">R$ 85,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão 100% Orgânico</span>
+                        <span>Cor: Cinza Chumbo</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>T-Shirt "Static"</h3><div class="preco">R$ 80,00</div></div>
+                <div class="produto-info">
+                    <h3>T-Shirt "Static"</h3>
+                    <div class="preco">R$ 80,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Fio 30.1</span>
+                        <span>Cor: Preto Total</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Boxy Tee "Cyber"</h3>
+                    <div class="preco">R$ 99,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Premium 280g</span>
+                        <span>Cor: Preto Carbono</span>
+                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>T-Shirt "Kernel"</h3>
+                    <div class="preco">R$ 88,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Comente</span>
+                        <span>Cor: Cinza Mel</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>T-Shirt "Root"</h3>
+                    <div class="preco">R$ 92,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Heavy Blend</span>
+                        <span>Cor: Preto Desbotado</span>
+                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -396,29 +491,93 @@
     <!-- ================= PÁGINA 3: MOLETONS ================= -->
     <div id="page-moletons" class="page">
         <div class="section-header-compact">
-            <h2> > MOLETONS_</h2>
+            <h2 class="fraktur-title">> Moletons</h2>
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Hoodie "Shadow"</h3><div class="preco">R$ 129,90</div></div>
+                <div class="produto-info">
+                    <h3>Hoodie "Shadow"</h3>
+                    <div class="preco">R$ 129,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Fleece Felpado 320g</span>
+                        <span>Cor: Preto Meia Noite</span>
+                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Zip-Up "Stealth"</h3><div class="preco">R$ 130,00</div></div>
+                <div class="produto-info">
+                    <h3>Zip-Up "Stealth"</h3>
+                    <div class="preco">R$ 130,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão com Elastano</span>
+                        <span>Cor: Cinza Chumbo</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Crewneck "Blank"</h3><div class="preco">R$ 115,00</div></div>
+                <div class="produto-info">
+                    <h3>Crewneck "Blank"</h3>
+                    <div class="preco">R$ 115,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Moletom 3 Cabos</span>
+                        <span>Cor: Preto Fosco</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Hoodie "System"</h3><div class="preco">R$ 125,00</div></div>
+                <div class="produto-info">
+                    <h3>Hoodie "System"</h3>
+                    <div class="preco">R$ 125,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Fleece Algodão/Poliéster</span>
+                        <span>Cor: Off-White Sujo</span>
+                        <span class="edicao-limitada">Edição Limitada (20 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Hoodie "Ghost"</h3><div class="preco">R$ 120,00</div></div>
+                <div class="produto-info">
+                    <h3>Hoodie "Ghost"</h3>
+                    <div class="preco">R$ 120,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Heavy Fleece</span>
+                        <span>Cor: Preto Total</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Zip-Up "Overload"</h3>
+                    <div class="preco">R$ 145,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Fleece Premium 400g</span>
+                        <span>Cor: Preto Lavado</span>
+                        <span class="edicao-limitada">Edição Limitada (15 pçs)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1579298245158-33e6f6645ff0?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Crewneck "Anarchy"</h3>
+                    <div class="preco">R$ 119,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Moletom Flanelado</span>
+                        <span>Cor: Grafite Escuro</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -427,29 +586,81 @@
     <!-- ================= PÁGINA 4: CALÇAS ================= -->
     <div id="page-calcas" class="page">
         <div class="section-header-compact">
-            <h2> > CALÇAS_</h2>
+            <h2 class="fraktur-title">> Calças</h2>
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1628790325492-942646d5c66b?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Cargo "Nyx"</h3><div class="preco">R$ 129,90</div></div>
+                <div class="produto-info">
+                    <h3>Cargo "Nyx"</h3>
+                    <div class="preco">R$ 129,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Sarja Impermeável</span>
+                        <span>Cor: Preto Tático</span>
+                        <span class="edicao-limitada">Edição Limitada (35 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Parachute "Drop"</h3><div class="preco">R$ 119,90</div></div>
+                <div class="produto-info">
+                    <h3>Parachute "Drop"</h3>
+                    <div class="preco">R$ 119,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Nylon Resinado</span>
+                        <span>Cor: Cinza Chumbo</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Tactical Pants</h3><div class="preco">R$ 130,00</div></div>
+                <div class="produto-info">
+                    <h3>Tactical Pants</h3>
+                    <div class="preco">R$ 130,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Ripstop Reforçado</span>
+                        <span>Cor: Preto Fosco</span>
+                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Sweatpants "Core"</h3><div class="preco">R$ 95,00</div></div>
+                <div class="produto-info">
+                    <h3>Sweatpants "Core"</h3>
+                    <div class="preco">R$ 95,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Moletom Algodão Pura</span>
+                        <span>Cor: Preto Mel</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Cargo "Onyx"</h3><div class="preco">R$ 125,00</div></div>
+                <div class="produto-info">
+                    <h3>Cargo "Onyx"</h3>
+                    <div class="preco">R$ 125,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Sarja Pesada 100% Algodão</span>
+                        <span>Cor: Preto Carbono</span>
+                        <span class="edicao-limitada">Edição Limitada (50 pçs)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Denim "Distorted"</h3>
+                    <div class="preco">R$ 140,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Jeans Rigido 14oz</span>
+                        <span>Cor: Preto Estonado</span>
+                        <span class="edicao-limitada">Edição Limitada (10 pçs)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -458,36 +669,124 @@
     <!-- ================= PÁGINA 5: BALACLAVAS ================= -->
     <div id="page-balaclavas" class="page">
         <div class="section-header-compact">
-            <h2> > BALACLAVAS_</h2>
+            <h2 class="fraktur-title">> Balaclavas</h2>
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Balaclava "Ninja"</h3><div class="preco">R$ 80,00</div></div>
+                <div class="produto-info">
+                    <h3>Balaclava "Ninja"</h3>
+                    <div class="preco">R$ 80,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Lã Acrílica Térmica</span>
+                        <span>Cor: Preto Total</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1622081545466-9dc73070fb67?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Mask "Riot"</h3><div class="preco">R$ 85,00</div></div>
+                <div class="produto-info">
+                    <h3>Mask "Riot"</h3>
+                    <div class="preco">R$ 85,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Elastano Cortado a Laser</span>
+                        <span>Cor: Grafite</span>
+                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1617326888469-635b71946394?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Balaclava "Winter"</h3><div class="preco">R$ 90,00</div></div>
+                <div class="produto-info">
+                    <h3>Balaclava "Winter"</h3>
+                    <div class="preco">R$ 90,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Fleece Duplo Anti-Vento</span>
+                        <span>Cor: Preto Fosco</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Mask "Venom"</h3><div class="preco">R$ 89,90</div></div>
+                <div class="produto-info">
+                    <h3>Mask "Venom"</h3>
+                    <div class="preco">R$ 89,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Malha Esportiva Dry-Fit</span>
+                        <span>Cor: Preto Carbono</span>
+                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                    </div>
+                </div>
             </div>
             <div class="produto-card">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=400&q=80" class="produto-img"></div>
-                <div class="produto-info"><h3>Balaclava "Ghost"</h3><div class="preco">R$ 85,00</div></div>
+                <div class="produto-info">
+                    <h3>Balaclava "Ghost"</h3>
+                    <div class="preco">R$ 85,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Canelado</span>
+                        <span>Cor: Off-White</span>
+                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= PÁGINA 6: KITS (NOVO SETOR) ================= -->
+    <div id="page-kits" class="page">
+        <div class="section-header-compact">
+            <h2 class="fraktur-title">> Kits</h2>
+            <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
+        </div>
+        <div class="catalog-container">
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Kit "Full Void" (Camisa + Calça)</h3>
+                    <div class="preco">R$ 199,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Algodão Pima + Sarja</span>
+                        <span>Cor: Preto Total</span>
+                        <span class="edicao-limitada">Edição Limitada (10 kits)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Kit "Stealth Winter" (Moletom + Balaclava)</h3>
+                    <div class="preco">R$ 185,00</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Fleece Heavy + Lã Acrílica</span>
+                        <span>Cor: Grafite Chumbo</span>
+                        <span class="edicao-limitada">Edição Limitada (15 kits)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-card">
+                <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80" class="produto-img"></div>
+                <div class="produto-info">
+                    <h3>Kit "Underground Drop" (Completo)</h3>
+                    <div class="preco">R$ 299,90</div>
+                    <div class="produto-detalhes">
+                        <span>Tecido: Mix Completo Premium</span>
+                        <span>Cor: Preto Carbono</span>
+                        <span class="edicao-limitada">Edição Limitada (5 kits)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
    
-    <!-- ================= RODAPÉ COMPACTO ================= -->
+    <!-- ================= RODAPÉ ================= -->
     <footer>
         <div class="footer-social">
+            <!-- Coloque seus links reais do Instagram e TikTok da sua marca aqui no lugar da Nike -->
             <a href="https://www.nike.com.br" target="_blank">Instagram</a>
             <a href="https://www.nike.com.br" target="_blank">TikTok</a>
         </div>
@@ -513,7 +812,7 @@
                     gatekeeper.style.opacity = '0';
                     setTimeout(() => {
                         gatekeeper.style.display = 'none';
-                        document.body.style.overflow = 'auto'; // Libera o scroll da página ativa
+                        document.body.style.overflow = 'auto'; 
                     }, 400);
                 }, 600);
             } else {
@@ -534,19 +833,16 @@
             if(e.key === 'Enter') { checkPassword(); }
         }
 
-        // Função que troca de página de verdade (sem rolar para baixo)
         function mudarPagina(nomePagina) {
-            // Pega todas as seções de página
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => {
                 page.classList.remove('active');
             });
 
-            // Ativa apenas a página escolhida
             const target = document.getElementById('page-' + nomePagina);
             if(target) {
                 target.classList.add('active');
-                window.scrollTo(0, 0); // Joga a tela pro topo automaticamente
+                window.scrollTo(0, 0); 
             }
         }
     </script>
