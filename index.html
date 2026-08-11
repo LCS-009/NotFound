@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOT FOUND | COMPACT ARCHIVE</title>
     
-    <!-- Fontes (Incluindo Fraktur Bold / UnifrakturMaguntia) -->
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;600;900&family=Oswald:wght@500;700;900&family=Sedgwick+Ave+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@500;700;900&family=Sedgwick+Ave+Display&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -28,7 +28,7 @@
             font-family: 'Space Mono', monospace;
             background-color: var(--black);
             color: var(--white);
-            overflow: hidden; /* Bloqueado até digitar a senha */
+            overflow: hidden;
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -38,12 +38,17 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* Estilo Fraktur Bold para Categorias */
+        /* Estilo Heraldic Shadows Regular para Títulos e Categorias */
         .fraktur-title {
-            font-family: 'UnifrakturMaguntia', cursive;
+            font-family: 'Heraldic Shadows Regular', 'UnifrakturMaguntia', cursive;
             font-size: 1.8rem !important;
             letter-spacing: 2px;
         }
+
+        /* Status de Estoque */
+        .status-disponivel { color: #51cf66; font-weight: bold; }
+        .status-estoques-limitados { color: #fcc419; font-weight: bold; }
+        .status-edicao-limitada { color: #ff6b6b; font-weight: bold; }
 
         /* ================= TELA DE SENHA ================= */
         #gatekeeper {
@@ -126,7 +131,7 @@
         }
         nav a:hover { color: var(--grey-light); }
 
-        /* ================= SISTEMA DE PÁGINAS MULTI-TELA ================= */
+        /* ================= PÁGINAS ================= */
         .page {
             display: none; 
             padding-top: 80px;
@@ -137,7 +142,7 @@
             display: block; 
         }
 
-        /* ================= HOME (PÁGINA INICIAL) ================= */
+        /* ================= HOME ================= */
         .home-container {
             height: calc(100vh - 60px);
             display: flex;
@@ -181,7 +186,7 @@
             transform: translateY(-3px);
         }
 
-        /* ================= PÁGINAS DE PRODUTOS ================= */
+        /* ================= CATÁLOGO ================= */
         .section-header-compact {
             display: flex;
             justify-content: space-between;
@@ -287,7 +292,6 @@
             margin: 2px 0;
         }
 
-        /* Detalhes Técnicos da Peça */
         .produto-detalhes {
             font-size: 0.65rem;
             color: var(--grey-light);
@@ -297,15 +301,6 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
-        }
-
-        .edicao-limitada {
-            color: #ff4d4d;
-            font-weight: bold;
-        }
-
-        .edicao-ilimitada {
-            color: #4dabf7;
         }
 
         /* ================= RODAPÉ ================= */
@@ -362,7 +357,7 @@
     </header>
 
 
-    <!-- ================= PÁGINA 1: HOME ================= -->
+    <!-- ================= PÁGINA: HOME ================= -->
     <div id="page-home" class="page active">
         <div class="home-container">
             <h1>NOT FOUND? RIGHT PLACE..</h1>
@@ -381,7 +376,7 @@
     </div>
 
 
-    <!-- ================= PÁGINA 2: CAMISAS ================= -->
+    <!-- ================= PÁGINA: CAMISAS ================= -->
     <div id="page-camisas" class="page">
         <div class="section-header-compact">
             <h2 class="fraktur-title">> Camisas</h2>
@@ -396,7 +391,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Pima 240g</span>
                         <span>Cor: Preto Estonado</span>
-                        <span class="edicao-limitada">Edição Limitada (50 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (50 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -408,7 +403,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Heavyweight</span>
                         <span>Cor: Branco Off-White</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -420,7 +415,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Meia Malha Cardada</span>
                         <span>Cor: Preto Fosco</span>
-                        <span class="edicao-limitada">Edição Limitada (30 pçs)</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -432,7 +427,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão 100% Orgânico</span>
                         <span>Cor: Cinza Chumbo</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -444,7 +439,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Fio 30.1</span>
                         <span>Cor: Preto Total</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -456,7 +451,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Premium 280g</span>
                         <span>Cor: Preto Carbono</span>
-                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -468,7 +463,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Comente</span>
                         <span>Cor: Cinza Mel</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -480,7 +475,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Heavy Blend</span>
                         <span>Cor: Preto Desbotado</span>
-                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (25 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -488,7 +483,7 @@
     </div>
 
 
-    <!-- ================= PÁGINA 3: MOLETONS ================= -->
+    <!-- ================= PÁGINA: MOLETONS ================= -->
     <div id="page-moletons" class="page">
         <div class="section-header-compact">
             <h2 class="fraktur-title">> Moletons</h2>
@@ -503,7 +498,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Felpado 320g</span>
                         <span>Cor: Preto Meia Noite</span>
-                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -515,7 +510,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão com Elastano</span>
                         <span>Cor: Cinza Chumbo</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -527,7 +522,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom 3 Cabos</span>
                         <span>Cor: Preto Fosco</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -539,7 +534,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Algodão/Poliéster</span>
                         <span>Cor: Off-White Sujo</span>
-                        <span class="edicao-limitada">Edição Limitada (20 pçs)</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -551,7 +546,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Heavy Fleece</span>
                         <span>Cor: Preto Total</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -563,7 +558,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Premium 400g</span>
                         <span>Cor: Preto Lavado</span>
-                        <span class="edicao-limitada">Edição Limitada (15 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (15 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -575,7 +570,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom Flanelado</span>
                         <span>Cor: Grafite Escuro</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -583,7 +578,7 @@
     </div>
 
 
-    <!-- ================= PÁGINA 4: CALÇAS ================= -->
+    <!-- ================= PÁGINA: CALÇAS ================= -->
     <div id="page-calcas" class="page">
         <div class="section-header-compact">
             <h2 class="fraktur-title">> Calças</h2>
@@ -598,7 +593,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Sarja Impermeável</span>
                         <span>Cor: Preto Tático</span>
-                        <span class="edicao-limitada">Edição Limitada (35 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (35 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -610,7 +605,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Nylon Resinado</span>
                         <span>Cor: Cinza Chumbo</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -622,7 +617,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Ripstop Reforçado</span>
                         <span>Cor: Preto Fosco</span>
-                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -634,7 +629,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom Algodão Pura</span>
                         <span>Cor: Preto Mel</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -646,7 +641,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Sarja Pesada 100% Algodão</span>
                         <span>Cor: Preto Carbono</span>
-                        <span class="edicao-limitada">Edição Limitada (50 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (50 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -658,7 +653,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Jeans Rigido 14oz</span>
                         <span>Cor: Preto Estonado</span>
-                        <span class="edicao-limitada">Edição Limitada (10 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (10 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -666,7 +661,7 @@
     </div>
 
 
-    <!-- ================= PÁGINA 5: BALACLAVAS ================= -->
+    <!-- ================= PÁGINA: BALACLAVAS ================= -->
     <div id="page-balaclavas" class="page">
         <div class="section-header-compact">
             <h2 class="fraktur-title">> Balaclavas</h2>
@@ -681,7 +676,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Lã Acrílica Térmica</span>
                         <span>Cor: Preto Total</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -693,7 +688,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Elastano Cortado a Laser</span>
                         <span>Cor: Grafite</span>
-                        <span class="edicao-limitada">Edição Limitada (40 pçs)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
@@ -705,7 +700,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Duplo Anti-Vento</span>
                         <span>Cor: Preto Fosco</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -717,7 +712,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Malha Esportiva Dry-Fit</span>
                         <span>Cor: Preto Carbono</span>
-                        <span class="edicao-limitada">Edição Limitada (25 pçs)</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -729,7 +724,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Canelado</span>
                         <span>Cor: Off-White</span>
-                        <span class="edicao-ilimitada">Edição Ilimitada</span>
+                        <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
@@ -737,7 +732,7 @@
     </div>
 
 
-    <!-- ================= PÁGINA 6: KITS (NOVO SETOR) ================= -->
+    <!-- ================= PÁGINA: KITS ================= -->
     <div id="page-kits" class="page">
         <div class="section-header-compact">
             <h2 class="fraktur-title">> Kits</h2>
@@ -752,7 +747,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Pima + Sarja</span>
                         <span>Cor: Preto Total</span>
-                        <span class="edicao-limitada">Edição Limitada (10 kits)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (10 kits)</span>
                     </div>
                 </div>
             </div>
@@ -764,7 +759,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Heavy + Lã Acrílica</span>
                         <span>Cor: Grafite Chumbo</span>
-                        <span class="edicao-limitada">Edição Limitada (15 kits)</span>
+                        <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
@@ -776,7 +771,7 @@
                     <div class="produto-detalhes">
                         <span>Tecido: Mix Completo Premium</span>
                         <span>Cor: Preto Carbono</span>
-                        <span class="edicao-limitada">Edição Limitada (5 kits)</span>
+                        <span class="status-edicao-limitada">Edição Limitada (5 kits)</span>
                     </div>
                 </div>
             </div>
@@ -786,14 +781,13 @@
     <!-- ================= RODAPÉ ================= -->
     <footer>
         <div class="footer-social">
-            <!-- Coloque seus links reais do Instagram e TikTok da sua marca aqui no lugar da Nike -->
-            <a href="https://www.nike.com.br" target="_blank">Instagram</a>
-            <a href="https://www.nike.com.br" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com" target="_blank">TikTok</a>
         </div>
         <p style="color: var(--grey-light); font-size: 0.75rem;">&copy; 2026 NOT FOUND. SYSTEM ACTIVE.</p>
     </footer>
  
-    <!-- ================= SCRIPTS DE CONTROLE ================= -->
+    <!-- ================= SCRIPTS ================= -->
     <script>
         const SENHA_CORRETA = "NORULES";
 
