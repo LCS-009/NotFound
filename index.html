@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOT FOUND | NO RULES</title>
+    
+    <!-- Importando fontes do Google -->
+    <!-- 'Sedgwick Ave Display' para a logo graffiti, 'Oswald' para títulos agressivos, 'Inter' para leitura -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Oswald:wght@500;700;900&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= VARIÁVEIS E RESET ================= */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --grey-dark: #111111;
+            --grey-mid: #333333;
+            --grey-light: #999999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ================= TIPOGRAFIA ================= */
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 4vw;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            border-bottom: 2px solid var(--white);
+        }
+
+        .logo {
+            font-family: 'Sedgwick Ave Display', cursive;
+            font-size: 3rem;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 0px var(--grey-mid);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        /* Efeito de sublinhado animado no menu */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ================= HERO SECTION ================= */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            background: radial-gradient(circle at center, var(--grey-dark) 0%, var(--black) 100%);
+        }
+
+        .hero-title {
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--grey-light);
+            max-width: 600px;
+            margin-bottom: 50px;
+            z-index: 2;
+        }
+
+        .btn-primary {
+            font-family: 'Oswald', sans-serif;
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--black);
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid var(--white);
+            transition: all 0.3s ease;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 10px 10px 0px var(--white);
+            transform: translate(-5px, -5px);
+        }
+
+        /* ================= MARQUEE (Letreiro Animado) ================= */
+        .marquee-container {
+            width: 100%;
+            background-color: var(--white);
+            color: var(--black);
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+            bottom: 0;
+            border-top: 4px solid var(--black);
+            border-bottom: 4px solid var(--black);
+            z-index: 10;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ================= LOJA / PRODUTOS ================= */
+        .section-padding {
+            padding: 120px 5%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--grey-mid);
+            padding-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 4rem;
+            letter-spacing: -1px;
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px; /* Espaço para criar efeito de borda de grid */
+            background-color: var(--grey-mid);
+            border: 2px solid var(--grey-mid);
+        }
+
+        .produto-card {
+            background-color: var(--black);
+            position: relative;
+            overflow: hidden;
+            group;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Textura conceitual para os placeholders de imagem */
+        .produto-img {
+            width: 100%;
+            height: 450px;
+            background: repeating-linear-gradient(45deg, #0a0a0a, #0a0a0a 10px, #111 10px, #111 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .img-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            transform: rotate(-90deg);
+            left: -40px;
+        }
+
+        .produto-card:hover .produto-img {
+            transform: scale(1.05);
+        }
+
+        .produto-info {
+            padding: 30px;
+            background: var(--black);
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .produto-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .produto-info .preco {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .btn-comprar {
+            width: 100%;
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 15px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-comprar:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ================= INSPIRAÇÕES ================= */
+        #inspiracoes {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        .insp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 4px solid var(--black);
+        }
+
+        .insp-text {
+            padding: 80px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .insp-text h2 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .insp-text p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--grey-mid);
+            margin-bottom: 20px;
+        }
+
+        .insp-visual {
+            background: repeating-linear-gradient(-45deg, #e0e0e0, #e0e0e0 5px, #ffffff 5px, #ffffff 10px);
+            border-left: 4px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+        
+        .insp-visual h3 {
+            font-size: 4rem;
+            color: var(--black);
+            mix-blend-mode: multiply;
+        }
+
+        /* ================= FUNDADORES ================= */
+        .grid-fundadores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .fundador-card {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .fundador-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .fundador-foto {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: var(--grey-dark);
+            border: 2px dashed var(--grey-light);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .fundador-card:hover .fundador-foto {
+            border-color: var(--white);
+            border-style: solid;
+        }
+
+        .fundador-foto::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .fundador-nome {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .fundador-cargo {
+            font-family: 'Oswald', sans-serif;
+            color: var(--grey-light);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            border-top: 2px solid var(--grey-mid);
+            padding: 80px 5% 40px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Sedgwick Ave Display', cursive;
+            font-size: 5rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links a:hover {
+            color: var(--grey-light);
+            text-decoration: line-through;
+        }
+
+        .copyright {
+            color: var(--grey-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ================= RESPONSIVO ================= */
+        @media (max-width: 1024px) {
+            .insp-grid {
+                grid-template-columns: 1fr;
+            }
+            .insp-visual {
+                border-left: none;
+                border-top: 4px solid var(--black);
+            }
+            .grid-fundadores {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            nav ul {
+                gap: 20px;
+                font-size: 0.9rem;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .btn-primary {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-fundadores {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <a href="#" class="logo">NotFound</a>
+        <nav>
+            <ul>
+                <li><a href="#loja">SHOP DROP 1</a></li>
+                <li><a href="#inspiracoes">MANIFESTO</a></li>
+                <li><a href="#fundadores">CREW</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section id="hero">
+        <h1 class="hero-title">A RUA NÃO<br>TEM CÓDIGO.</h1>
+        <p class="hero-subtitle">Streetwear cru, sem logomarcas gigantes, sem cores, apenas o puro contraste entre a luz e a escuridão urbana.</p>
+        <a href="#loja" class="btn-primary">Acessar Arquivo</a>
+        
+        <!-- Letreiro Animado -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                NOT FOUND // NO RULES // BLACK AND WHITE ONLY // ERROR 404 // NOT FOUND // NO RULES // BLACK AND WHITE ONLY // ERROR 404 // NOT FOUND // NO RULES // BLACK AND WHITE ONLY // ERROR 404 // 
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LOJA (PRODUTOS) ================= -->
+    <section id="loja" class="section-padding">
+        <div class="section-header">
+            <h2>CÁPSULA 001</h2>
+            <p style="color: var(--grey-light); font-weight: 600;">[ QUANTIDADES LIMITADAS ]</p>
+        </div>
+
+        <div class="grid-produtos">
+            
+            <!-- Produto 1 -->
+            <div class="produto-card">
+                <div class="produto-img">
+                    <span class="img-label">IMG_01</span>
+                </div>
+                <div class="produto-info">
+                    <h3>Camiseta "Error" Oversized</h3>
+                    <div class="preco">R$ 89,90</div>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="produto-card">
+                <div class="produto-img">
+                    <span class="img-label">IMG_02</span>
+                </div>
+                <div class="produto-info">
+                    <h3>Boné Dad Hat Blank</h3>
+                    <div class="preco">R$ 85,00</div>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="produto-card">
+                <div class="produto-img">
+                    <span class="img-label">IMG_03</span>
+                </div>
+                <div class="produto-info">
+                    <h3>Bermuda Cargo Tática</h3>
+                    <div class="preco">R$ 119,90</div>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="produto-card">
+                <div class="produto-img">
+                    <span class="img-label">IMG_04</span>
+                </div>
+                <div class="produto-info">
+                    <h3>Shoulder Bag "Stealth"</h3>
+                    <div class="preco">R$ 129,90</div>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= INSPIRAÇÕES / MANIFESTO ================= -->
+    <section id="inspiracoes" class="section-padding">
+        <div class="insp-grid">
+            <div class="insp-text">
+                <h2>BELEZA NO CAOS.</h2>
+                <p>Nós rejeitamos o colorido sintético. Nossa inspiração vem do concreto rústico, do asfalto gasto e das pichações apagadas pelo tempo.</p>
+                <p>O que você veste não precisa berrar por atenção. O silêncio do preto e branco ecoa muito mais alto no underground.</p>
+            </div>
+            <div class="insp-visual">
+                <!-- Espaço para uma imagem de lifestyle conceitual -->
+                <h3>[ MOODBOARD ]</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FUNDADORES ================= -->
+    <section id="fundadores" class="section-padding">
+        <div class="section-header">
+            <h2>A CREW</h2>
+            <p style="color: var(--grey-light); font-weight: 600;">[ MENTES POR TRÁS DA SOMBRA ]</p>
+        </div>
+
+        <div class="grid-fundadores">
+            <!-- Fundador 1 -->
+            <div class="fundador-card">
+                <div class="fundador-foto"></div>
+                <h3 class="fundador-nome">ZAYN</h3>
+                <p class="fundador-cargo">DIRETOR CRIATIVO</p>
+            </div>
+            
+            <!-- Fundador 2 -->
+            <div class="fundador-card">
+                <div class="fundador-foto"></div>
+                <h3 class="fundador-nome">MIA</h3>
+                <p class="fundador-cargo">HEAD DE DESIGN</p>
+            </div>
+
+            <!-- Fundador 3 -->
+            <div class="fundador-card">
+                <div class="fundador-foto"></div>
+                <h3 class="fundador-nome">KODA</h3>
+                <p class="fundador-cargo">ESTRATEGIAS & DROPS</p>
+            </div>
+
+            <!-- Fundador 4 -->
+            <div class="fundador-card">
+                <div class="fundador-foto"></div>
+                <h3 class="fundador-nome">LEX</h3>
+                <p class="fundador-cargo">DIRETOR DE ARTE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="footer-logo">NotFound</div>
+        <ul class="footer-links">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Tiktok</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Termos Ocultos</a></li>
+        </ul>
+        <p class="copyright">&copy; 2026 NOT FOUND. TODOS OS DIREITOS RESERVADOS. CÓDIGO FONTE ABERTO PARA AS RUAS.</p>
+    </footer>
+
+</body>
+</html>
