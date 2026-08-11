@@ -225,6 +225,7 @@
             border: 1px solid var(--grey-mid);
             transition: all 0.2s ease;
             z-index: 1;
+            cursor: pointer;
         }
 
         .produto-card::before {
@@ -302,6 +303,137 @@
             flex-direction: column;
             gap: 2px;
         }
+
+        /* ================= MODAL DE DETALHES ================= */
+        #produto-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.92);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--black);
+            border: 2px solid var(--white);
+            width: 100%;
+            max-width: 850px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content { grid-template-columns: 1fr; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-img-container {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            background: var(--grey-dark);
+            border-right: 1px solid var(--grey-mid);
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(130%);
+            transition: filter 0.3s ease;
+        }
+
+        .modal-details-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-details-body h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .modal-price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--grey-light);
+        }
+
+        .modal-section-title {
+            font-size: 0.8rem;
+            color: var(--grey-light);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .selector-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-btn, .color-btn {
+            background: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+            padding: 8px 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .size-btn.active, .color-btn.active {
+            background: var(--white);
+            color: var(--black);
+            font-weight: bold;
+        }
+
+        .tech-specs {
+            font-size: 0.75rem;
+            color: var(--grey-light);
+            border-top: 1px dashed var(--grey-mid);
+            border-bottom: 1px dashed var(--grey-mid);
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .btn-comprar {
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 12px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        .btn-comprar:hover { background: var(--grey-light); color: var(--white); }
 
         /* ================= RODAPÉ ================= */
         footer {
@@ -383,98 +515,137 @@
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
-            <div class="produto-card">
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="T-Shirt 'Void'" data-preco="R$ 89,90" 
+                 data-tecido="Algodão Pima 240g 100% Orgânico" data-status="Edição Limitada (50 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>T-Shirt "Void"</h3>
                     <div class="preco">R$ 89,90</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Pima 240g</span>
-                        <span>Cor: Preto Estonado</span>
                         <span class="status-edicao-limitada">Edição Limitada (50 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Oversized 'Error'" data-preco="R$ 95,00" 
+                 data-tecido="Algodão Heavyweight 100%" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Oversized "Error"</h3>
                     <div class="preco">R$ 95,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Heavyweight</span>
-                        <span>Cor: Branco Off-White</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Longsleeve 'Glitch'" data-preco="R$ 110,00" 
+                 data-tecido="Meia Malha Cardada Algodão" data-status="Estoques Limitados (Restam 4 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Longsleeve "Glitch"</h3>
                     <div class="preco">R$ 110,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Meia Malha Cardada</span>
-                        <span>Cor: Preto Fosco</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="T-Shirt 'No Signal'" data-preco="R$ 85,00" 
+                 data-tecido="Algodão 100% Orgânico" data-status="Disponível (Estoque Contínuo)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>T-Shirt "No Signal"</h3>
                     <div class="preco">R$ 85,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Algodão 100% Orgânico</span>
-                        <span>Cor: Cinza Chumbo</span>
+                        <span>Tecido: Algodão Orgânico</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="T-Shirt 'Static'" data-preco="R$ 80,00" 
+                 data-tecido="Algodão Fio 30.1 Penteado" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>T-Shirt "Static"</h3>
                     <div class="preco">R$ 80,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Fio 30.1</span>
-                        <span>Cor: Preto Total</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Boxy Tee 'Cyber'" data-preco="R$ 99,90" 
+                 data-tecido="Algodão Premium 280g" data-status="Edição Limitada (40 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Boxy Tee "Cyber"</h3>
                     <div class="preco">R$ 99,90</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Algodão Premium 280g</span>
-                        <span>Cor: Preto Carbono</span>
+                        <span>Tecido: Algodão 280g</span>
                         <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="T-Shirt 'Kernel'" data-preco="R$ 88,00" 
+                 data-tecido="Algodão Comente 100%" data-status="Estoques Limitados (Restam 6 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>T-Shirt "Kernel"</h3>
                     <div class="preco">R$ 88,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Comente</span>
-                        <span>Cor: Cinza Mel</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="T-Shirt 'Root'" data-preco="R$ 92,00" 
+                 data-tecido="Algodão Heavy Blend 260g" data-status="Edição Limitada (25 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>T-Shirt "Root"</h3>
                     <div class="preco">R$ 92,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Heavy Blend</span>
-                        <span>Cor: Preto Desbotado</span>
                         <span class="status-edicao-limitada">Edição Limitada (25 pçs)</span>
                     </div>
                 </div>
@@ -490,86 +661,120 @@
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
-            <div class="produto-card">
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Hoodie 'Shadow'" data-preco="R$ 129,90" 
+                 data-tecido="Fleece Felpado 320g Algodão/Poliéster" data-status="Edição Limitada (40 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Hoodie "Shadow"</h3>
                     <div class="preco">R$ 129,90</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Felpado 320g</span>
-                        <span>Cor: Preto Meia Noite</span>
                         <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Zip-Up 'Stealth'" data-preco="R$ 130,00" 
+                 data-tecido="Algodão com Elastano Premium" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Zip-Up "Stealth"</h3>
                     <div class="preco">R$ 130,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão com Elastano</span>
-                        <span>Cor: Cinza Chumbo</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Crewneck 'Blank'" data-preco="R$ 115,00" 
+                 data-tecido="Moletom 3 Cabos 100% Algodão" data-status="Disponível (Estoque Contínuo)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Crewneck "Blank"</h3>
                     <div class="preco">R$ 115,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom 3 Cabos</span>
-                        <span>Cor: Preto Fosco</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Hoodie 'System'" data-preco="R$ 125,00" 
+                 data-tecido="Fleece Algodão/Poliéster Pesado" data-status="Estoques Limitados (Restam 5 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Hoodie "System"</h3>
                     <div class="preco">R$ 125,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Fleece Algodão/Poliéster</span>
-                        <span>Cor: Off-White Sujo</span>
+                        <span>Tecido: Fleece Algodão/Poliv</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Hoodie 'Ghost'" data-preco="R$ 120,00" 
+                 data-tecido="Algodão Heavy Fleece" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Hoodie "Ghost"</h3>
                     <div class="preco">R$ 120,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Algodão Heavy Fleece</span>
-                        <span>Cor: Preto Total</span>
+                        <span>Tecido: Heavy Fleece</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Zip-Up 'Overload'" data-preco="R$ 145,00" 
+                 data-tecido="Fleece Premium 400g Reforçado" data-status="Edição Limitada (15 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1579298245158-33e6f6645ff0?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Zip-Up "Overload"</h3>
                     <div class="preco">R$ 145,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Fleece Premium 400g</span>
-                        <span>Cor: Preto Lavado</span>
                         <span class="status-edicao-limitada">Edição Limitada (15 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Crewneck 'Anarchy'" data-preco="R$ 119,00" 
+                 data-tecido="Moletom Flanelado 100% Algodão" data-status="Estoques Limitados (Restam 8 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1579298245158-33e6f6645ff0?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1548883354-7622d03aca27?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1579298245158-33e6f6645ff0?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Crewneck "Anarchy"</h3>
                     <div class="preco">R$ 119,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom Flanelado</span>
-                        <span>Cor: Grafite Escuro</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
@@ -585,74 +790,103 @@
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
-            <div class="produto-card">
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Cargo 'Nyx'" data-preco="R$ 129,90" 
+                 data-tecido="Sarja Impermeável Tratada" data-status="Edição Limitada (35 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1628790325492-942646d5c66b?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1628790325492-942646d5c66b?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Cargo "Nyx"</h3>
                     <div class="preco">R$ 129,90</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Sarja Impermeável</span>
-                        <span>Cor: Preto Tático</span>
                         <span class="status-edicao-limitada">Edição Limitada (35 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Parachute 'Drop'" data-preco="R$ 119,90" 
+                 data-tecido="Nylon Resinado Leve" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1628790325492-942646d5c66b?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Parachute "Drop"</h3>
                     <div class="preco">R$ 119,90</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Nylon Resinado</span>
-                        <span>Cor: Cinza Chumbo</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Tactical Pants" data-preco="R$ 130,00" 
+                 data-tecido="Ripstop Reforçado Anti-Rasgo" data-status="Estoques Limitados (Restam 3 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Tactical Pants</h3>
                     <div class="preco">R$ 130,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Ripstop Reforçado</span>
-                        <span>Cor: Preto Fosco</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Sweatpants 'Core'" data-preco="R$ 95,00" 
+                 data-tecido="Moletom Algodão Pura 320g" data-status="Disponível (Estoque Contínuo)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Sweatpants "Core"</h3>
                     <div class="preco">R$ 95,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Moletom Algodão Pura</span>
-                        <span>Cor: Preto Mel</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Cargo 'Onyx'" data-preco="R$ 125,00" 
+                 data-tecido="Sarja Pesada 100% Algodão" data-status="Edição Limitada (50 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1628790325492-942646d5c66b?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Cargo "Onyx"</h3>
                     <div class="preco">R$ 125,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Sarja Pesada 100% Algodão</span>
-                        <span>Cor: Preto Carbono</span>
+                        <span>Tecido: Sarja Pesada Algodão</span>
                         <span class="status-edicao-limitada">Edição Limitada (50 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Denim 'Distorted'" data-preco="R$ 140,00" 
+                 data-tecido="Jeans Rígido 14oz Heavy" data-status="Edição Limitada (10 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1584865288642-42078afe6942?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Denim "Distorted"</h3>
                     <div class="preco">R$ 140,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Jeans Rigido 14oz</span>
-                        <span>Cor: Preto Estonado</span>
+                        <span>Tecido: Jeans Rígido 14oz</span>
                         <span class="status-edicao-limitada">Edição Limitada (10 pçs)</span>
                     </div>
                 </div>
@@ -668,62 +902,86 @@
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
-            <div class="produto-card">
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Balaclava 'Ninja'" data-preco="R$ 80,00" 
+                 data-tecido="Lã Acrílica Térmica Alta Densidade" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1622081545466-9dc73070fb67?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1617326888469-635b71946394?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Balaclava "Ninja"</h3>
                     <div class="preco">R$ 80,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Lã Acrílica Térmica</span>
-                        <span>Cor: Preto Total</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Mask 'Riot'" data-preco="R$ 85,00" 
+                 data-tecido="Elastano Cortado a Laser" data-status="Edição Limitada (40 pçs)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1622081545466-9dc73070fb67?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1622081545466-9dc73070fb67?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Mask "Riot"</h3>
                     <div class="preco">R$ 85,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Elastano Cortado a Laser</span>
-                        <span>Cor: Grafite</span>
+                        <span>Tecido: Elastano a Laser</span>
                         <span class="status-edicao-limitada">Edição Limitada (40 pçs)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Balaclava 'Winter'" data-preco="R$ 90,00" 
+                 data-tecido="Fleece Duplo Anti-Vento" data-status="Disponível (Estoque Contínuo)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1617326888469-635b71946394?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1617326888469-635b71946394?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Balaclava "Winter"</h3>
                     <div class="preco">R$ 90,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Fleece Duplo Anti-Vento</span>
-                        <span>Cor: Preto Fosco</span>
+                        <span>Tecido: Fleece Anti-Vento</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Mask 'Venom'" data-preco="R$ 89,90" 
+                 data-tecido="Malha Esportiva Dry-Fit Tech" data-status="Estoques Limitados (Restam 5 pçs)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1622081545466-9dc73070fb67?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1617326888469-635b71946394?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Mask "Venom"</h3>
                     <div class="preco">R$ 89,90</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Malha Esportiva Dry-Fit</span>
-                        <span>Cor: Preto Carbono</span>
+                        <span>Tecido: Dry-Fit Tech</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Balaclava 'Ghost'" data-preco="R$ 85,00" 
+                 data-tecido="Algodão Canelado 100%" data-status="Disponível (Alto Estoque)" data-status-class="status-disponivel"
+                 data-img-preto="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
                     <h3>Balaclava "Ghost"</h3>
                     <div class="preco">R$ 85,00</div>
                     <div class="produto-detalhes">
                         <span>Tecido: Algodão Canelado</span>
-                        <span>Cor: Off-White</span>
                         <span class="status-disponivel">Disponível</span>
                     </div>
                 </div>
@@ -739,41 +997,96 @@
             <button class="btn-voltar" onclick="mudarPagina('home')">&larr; Voltar</button>
         </div>
         <div class="catalog-container">
-            <div class="produto-card">
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Kit 'Full Void' (Camisa + Calça)" data-preco="R$ 199,90" 
+                 data-tecido="Mix: Algodão Pima 240g + Sarja Impermeável" data-status="Edição Limitada (10 kits)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
-                    <h3>Kit "Full Void" (Camisa + Calça)</h3>
+                    <h3>Kit "Full Void"</h3>
                     <div class="preco">R$ 199,90</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Algodão Pima + Sarja</span>
-                        <span>Cor: Preto Total</span>
+                        <span>Tecido: Mix Pima + Sarja</span>
                         <span class="status-edicao-limitada">Edição Limitada (10 kits)</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Kit 'Stealth Winter' (Moletom + Balaclava)" data-preco="R$ 185,00" 
+                 data-tecido="Mix: Fleece Heavy 320g + Lã Acrílica" data-status="Estoques Limitados (Restam 2 kits)" data-status-class="status-estoques-limitados"
+                 data-img-preto="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
-                    <h3>Kit "Stealth Winter" (Moletom + Balaclava)</h3>
+                    <h3>Kit "Stealth Winter"</h3>
                     <div class="preco">R$ 185,00</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Fleece Heavy + Lã Acrílica</span>
-                        <span>Cor: Grafite Chumbo</span>
+                        <span>Tecido: Fleece Heavy + Lã</span>
                         <span class="status-estoques-limitados">Estoques Limitados</span>
                     </div>
                 </div>
             </div>
-            <div class="produto-card">
+
+            <div class="produto-card" onclick="abrirModal(this)" 
+                 data-nome="Kit 'Underground Drop' (Completo)" data-preco="R$ 299,90" 
+                 data-tecido="Mix Completo Premium 100% Algodão" data-status="Edição Limitada (5 kits)" data-status-class="status-edicao-limitada"
+                 data-img-preto="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80"
+                 data-img-vermelho="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80"
+                 data-img-branco="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=400&q=80">
                 <div class="produto-img-container"><img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400&q=80" class="produto-img"></div>
                 <div class="produto-info">
-                    <h3>Kit "Underground Drop" (Completo)</h3>
+                    <h3>Kit "Underground"</h3>
                     <div class="preco">R$ 299,90</div>
                     <div class="produto-detalhes">
-                        <span>Tecido: Mix Completo Premium</span>
-                        <span>Cor: Preto Carbono</span>
+                        <span>Tecido: Mix Premium</span>
                         <span class="status-edicao-limitada">Edição Limitada (5 kits)</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL DE DETALHES DE PRODUTO ================= -->
+    <div id="produto-modal" onclick="fecharModalFora(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+            <div class="modal-img-container">
+                <img id="modal-img" src="" alt="Produto">
+            </div>
+            <div class="modal-details-body">
+                <h2 id="modal-nome">Nome do Produto</h2>
+                <div class="modal-price" id="modal-preco">R$ 00,00</div>
+                
+                <div>
+                    <div class="modal-section-title">Selecione o Tamanho:</div>
+                    <div class="selector-group">
+                        <button class="size-btn active" onclick="selecionarTamanho(this)">P</button>
+                        <button class="size-btn" onclick="selecionarTamanho(this)">M</button>
+                        <button class="size-btn" onclick="selecionarTamanho(this)">G</button>
+                        <button class="size-btn" onclick="selecionarTamanho(this)">GG</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="modal-section-title">Selecione a Cor:</div>
+                    <div class="selector-group">
+                        <button class="color-btn active" onclick="selecionarCor('preto', this)">Preto</button>
+                        <button class="color-btn" onclick="selecionarCor('vermelho', this)">Vermelho</button>
+                        <button class="color-btn" onclick="selecionarCor('branco', this)">Branco</button>
+                    </div>
+                </div>
+
+                <div class="tech-specs">
+                    <span><strong>Especificação de Tecido:</strong> <span id="modal-tecido">Algodão</span></span>
+                    <span><strong>Status no Estoque:</strong> <span id="modal-status">Disponível</span></span>
+                </div>
+
+                <button class="btn-comprar" onclick="adicionarAoCarrinho()">Adicionar ao Arquivo / Comprar</button>
             </div>
         </div>
     </div>
@@ -790,6 +1103,7 @@
     <!-- ================= SCRIPTS ================= -->
     <script>
         const SENHA_CORRETA = "NORULES";
+        let produtoAtual = {};
 
         function checkPassword() {
             const input = document.getElementById('passInput');
@@ -838,6 +1152,71 @@
                 target.classList.add('active');
                 window.scrollTo(0, 0); 
             }
+        }
+
+        // ================= FUNÇÕES DO MODAL =================
+        function abrirModal(card) {
+            produtoAtual = {
+                nome: card.getAttribute('data-nome'),
+                preco: card.getAttribute('data-preco'),
+                tecido: card.getAttribute('data-tecido'),
+                status: card.getAttribute('data-status'),
+                statusClass: card.getAttribute('data-status-class'),
+                imgPreto: card.getAttribute('data-img-preto'),
+                imgVermelho: card.getAttribute('data-img-vermelho'),
+                imgBranco: card.getAttribute('data-img-branco')
+            };
+
+            document.getElementById('modal-nome').innerText = produtoAtual.nome;
+            document.getElementById('modal-preco').innerText = produtoAtual.preco;
+            document.getElementById('modal-tecido').innerText = produtoAtual.tecido;
+            
+            const statusEl = document.getElementById('modal-status');
+            statusEl.innerText = produtoAtual.status;
+            statusEl.className = produtoAtual.statusClass;
+
+            // Definir imagem inicial (Preto como padrão)
+            document.getElementById('modal-img').src = produtoAtual.imgPreto;
+
+            // Resetar botões selecionados para o padrão (Preto e P)
+            document.querySelectorAll('.size-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+            document.querySelectorAll('.color-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+
+            document.getElementById('produto-modal').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('produto-modal').style.display = 'none';
+        }
+
+        function fecharModalFora(e) {
+            if(e.target.id === 'produto-modal') {
+                fecharModal();
+            }
+        }
+
+        function selecionarTamanho(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function selecionarCor(cor, btn) {
+            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const imgElement = document.getElementById('modal-img');
+            if(cor === 'preto') {
+                imgElement.src = produtoAtual.imgPreto;
+            } else if(cor === 'vermelho') {
+                imgElement.src = produtoAtual.imgVermelho;
+            } else if(cor === 'branco') {
+                imgElement.src = produtoAtual.imgBranco;
+            }
+        }
+
+        function adicionarAoCarrinho() {
+            alert('Item configurado e reservado no seu arquivo temporário!');
+            fecharModal();
         }
     </script>
 </body>
